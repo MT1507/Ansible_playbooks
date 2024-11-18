@@ -1,0 +1,24 @@
+
+
+---
+
+- name: My test playbook
+  hosts: webservers
+  become: true
+  tasks: 
+   - name: creating multiple users
+     user: name="{{item}}" state=present
+     with_items:
+       - rudra
+       - shree
+       - anni
+
+   - name: run command for user
+     command: tail -3 /etc/passwd
+     register: command_results
+
+   - name: show current users 
+     debug:
+       var: command_results.stdout
+
+

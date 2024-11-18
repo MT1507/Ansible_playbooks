@@ -1,0 +1,14 @@
+---
+
+- name: My test playbook
+  hosts: all
+  become: yes
+  vars:
+    user: pradip
+  
+  tasks: 
+   - name: ceate user using variables username= {{user}}
+     user:
+       name: "{{user}}" 
+       state: present
+

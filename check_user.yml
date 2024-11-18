@@ -1,0 +1,17 @@
+
+
+---
+ - name: My test playbook
+   hosts: all
+   become: true
+   tasks:
+     - name: command for user
+       shell: tail -3 /etc/passwd
+       register: shell_result
+
+     - name: show users
+       debug:
+         var: shell_result.stdout
+
+        
+

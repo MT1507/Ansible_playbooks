@@ -1,0 +1,23 @@
+
+
+--- 
+ - name: My test playbook
+   hosts: all
+   become: true
+   tasks:
+     - name: delete users
+       user: name="{{item}}" state=absent
+       with_items:
+         - rudra
+         - shree
+         - anni
+     
+     - name: run command for  users
+       command: tail -3 /etc/passwd
+       register: command_result
+
+     - name: show current users
+       debug:
+         var: command_result.stdout
+
+
